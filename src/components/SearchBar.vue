@@ -1,20 +1,22 @@
 <template>
-    <div class="search-bar">
-      <form @submit.prevent>
-        <!-- @submit.prevent 입력창에 입력하면 새로고침 되지 않게 하는것
-         즉, 제출 방지!!! -->
-        <div class="form-group">
-          <input type="search" placeholder="지역을 입력해 주세요">
-          <button>
-            <font-awesome-icon class="icon" :icon="['fas', 'magnifying-glass']" />
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="search-bar">
+    <form @submit.prevent>
+      <div class="form-group">
+        <input @input="inputText = $event.target.value" type="search" placeholder="지역을 입력해 주세요"/>
+        <button @click="emits('onSearchCity', inputText)">
+          <font-awesome-icon class="icon" :icon="['fas', 'magnifying-glass']" />
+        </button>
+      </div>
+    </form>
+  </div>
+  <p>{{ inputText }}</p>
   </template>
-  <script setup>
+
+<script setup>
   import { ref } from 'vue';
-  const inputText = red('')
+
+  const inputText = ref('');
+  const emits = defineEmits(['onSearchCity']); // 이벤트를 정의하고 함수를 반환
 </script>
   
   <style lang="scss" scoped>
