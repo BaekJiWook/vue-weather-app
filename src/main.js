@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import store from './store/store'
-// 스토어 가지고 오기
+// import store from './store/store'
+import { createPinia } from 'pinia'
+// Pinia가져오기
+
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,8 +18,11 @@ import { faBarsStaggered, faLocationDot, faMagnifyingGlass } from '@fortawesome/
 // 아이콘 등록하기
 library.add(faBarsStaggered, faLocationDot, faMagnifyingGlass);
 
+const pinia = createPinia();
+// pinia변수만들기
 createApp(App)
-// 가지고 온 스토어를 연결해주기
-  .use(store)
+  // .use(store)
+  .use(pinia)
+  // pinia이용
   .component('font-awesome-icon', FontAwesomeIcon)
   .mount('#app')
